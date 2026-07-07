@@ -36,22 +36,23 @@ export function ParticleBackground() {
     let width = 0;
     let height = 0;
     let isVisible = !document.hidden;
-    const particleColor =
-      getComputedStyle(document.documentElement)
-        .getPropertyValue("--color-yellow")
-        .trim() || "#ffd400";
+    const particleColors = [
+      "rgba(244, 240, 232, 0.55)",
+      "rgba(157, 150, 137, 0.45)",
+      "rgba(70, 66, 58, 0.5)",
+    ];
 
     const createParticles = () => {
       const isMobile = window.innerWidth < 768;
-      const count = prefersReducedMotion.matches ? 0 : isMobile ? 42 : 96;
+      const count = prefersReducedMotion.matches ? 0 : isMobile ? 58 : 132;
 
       particles = Array.from({ length: count }, () => ({
         x: Math.random() * width,
         y: Math.random() * height,
-        vx: (Math.random() - 0.5) * 0.28,
-        vy: (Math.random() - 0.5) * 0.28,
-        size: Math.random() * 1.15 + 0.3,
-        alpha: Math.random() * 0.42 + 0.1,
+        vx: (Math.random() - 0.5) * 0.34,
+        vy: (Math.random() - 0.5) * 0.3,
+        size: Math.random() * 1.35 + 0.35,
+        alpha: Math.random() * 0.48 + 0.16,
       }));
     };
 
@@ -69,8 +70,6 @@ export function ParticleBackground() {
 
     const draw = () => {
       context.clearRect(0, 0, width, height);
-      context.fillStyle = particleColor;
-
       for (const particle of particles) {
         const dx = particle.x - pointer.x;
         const dy = particle.y - pointer.y;
@@ -92,7 +91,9 @@ export function ParticleBackground() {
         if (particle.y < -8) particle.y = height + 8;
         if (particle.y > height + 8) particle.y = -8;
 
-        context.globalAlpha = particle.alpha * 0.36;
+        context.fillStyle =
+          particleColors[Math.floor((particle.x + particle.y) % particleColors.length)];
+        context.globalAlpha = particle.alpha * 0.5;
         context.beginPath();
         context.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
         context.fill();
@@ -149,7 +150,7 @@ export function ParticleBackground() {
     <canvas
       ref={canvasRef}
       aria-hidden="true"
-      className="pointer-events-none fixed inset-0 z-0 opacity-45"
+      className="pointer-events-none fixed inset-0 z-0 opacity-60"
     />
   );
 }

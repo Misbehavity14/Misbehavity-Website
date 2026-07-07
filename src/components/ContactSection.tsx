@@ -1,3 +1,6 @@
+import Image from "next/image";
+import { TroubledWord } from "@/components/TroubledWord";
+
 export function ContactSection() {
   return (
     <section
@@ -5,16 +8,12 @@ export function ContactSection() {
       className="relative flex min-h-screen flex-col px-6 pb-0 pt-20"
       aria-labelledby="contact-heading"
     >
-      <div className="absolute inset-x-0 top-0 h-px bg-divider" />
       <div className="mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center gap-14 pb-16">
         <h2
           id="contact-heading"
           className="max-w-5xl text-4xl font-semibold uppercase leading-tight tracking-[0.08em] text-foreground sm:text-6xl"
         >
-          Tell us what&rsquo;s{" "}
-          <span className="inline-block -rotate-2 font-serif italic tracking-[0.16em] text-foreground">
-            troubling
-          </span>{" "}
+          Tell us what&rsquo;s <TroubledWord className="mx-2 tracking-[0.12em]" />{" "}
           you?
         </h2>
 
@@ -65,14 +64,14 @@ export function ContactSection() {
           </form>
 
           <div className="lg:pl-20">
-            <p className="font-serif text-3xl font-normal leading-tight text-foreground sm:text-5xl">
+            <p className="font-serif text-2xl font-normal leading-tight text-foreground sm:text-4xl">
               Bring us the problem you can see.
               <br />
               We&rsquo;ll look for the one underneath.
             </p>
             <a
               href="mailto:hello@misbehavity.in"
-              className="mt-12 inline-block font-serif text-3xl font-normal italic text-accent transition hover:text-foreground sm:text-5xl"
+              className="mt-10 inline-block font-serif text-2xl font-normal italic text-accent transition hover:text-foreground sm:text-4xl"
             >
               hello@misbehavity.in
             </a>
@@ -81,14 +80,23 @@ export function ContactSection() {
       </div>
 
       <footer className="-mx-6 bg-accent px-6 py-4 text-background">
-        <div className="mx-auto flex max-w-7xl flex-wrap items-center gap-x-8 gap-y-2 text-xs font-black uppercase tracking-[0.16em]">
-          <span>Misbehavity Consulting LLP, India</span>
-          <span>Brand Strategy</span>
-          <span>Creative Consulting</span>
-          <span>Mumbai / India</span>
-          <a href="mailto:hello@misbehavity.in" className="hover:underline">
-            hello@misbehavity.in
-          </a>
+        <div className="mx-auto flex max-w-7xl flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <Image
+            src="/images/logos/misbehavity-logo.png"
+            alt="Misbehavity"
+            width={118}
+            height={82}
+            className="h-auto w-24 shrink-0"
+          />
+          <div className="flex flex-wrap items-center gap-x-8 gap-y-2 text-xs font-black uppercase tracking-[0.16em]">
+            <span>Misbehavity Consulting LLP, India</span>
+            <span>Brand Strategy</span>
+            <span>Creative Consulting</span>
+            <span>Mumbai / India</span>
+            <a href="mailto:hello@misbehavity.in" className="hover:underline">
+              hello@misbehavity.in
+            </a>
+          </div>
         </div>
       </footer>
     </section>

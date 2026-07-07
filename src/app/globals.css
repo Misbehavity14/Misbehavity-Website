@@ -24,7 +24,6 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-snap-type: y proximity;
   background: var(--color-bg);
 }
 
@@ -34,18 +33,6 @@ body {
   color: var(--color-text);
   font-family: var(--system-sans);
   text-rendering: geometricPrecision;
-}
-
-body::before {
-  position: fixed;
-  inset: 0;
-  z-index: -2;
-  pointer-events: none;
-  content: "";
-  background:
-    linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.014) 1px, transparent 1px);
-  background-size: 72px 72px;
 }
 
 ::selection {
@@ -103,6 +90,10 @@ button {
   scroll-snap-stop: always;
 }
 
+.snap-pair {
+  scroll-snap-type: y mandatory;
+}
+
 .marquee-line {
   overflow: hidden;
   white-space: nowrap;
@@ -124,11 +115,22 @@ button {
   display: flex;
   gap: 0.35em;
   padding-right: 0.35em;
-  font-size: clamp(4.1rem, 8.2vw, 9.6rem);
+  font-size: clamp(4rem, 8.2vw, 9.6rem);
   font-weight: 900;
   line-height: 0.86;
   letter-spacing: 0.02em;
   text-transform: uppercase;
+}
+
+.method-card {
+  animation: method-drift var(--method-duration, 8s) ease-in-out infinite
+    alternate;
+  animation-delay: var(--method-delay, 0s);
+  will-change: transform;
+}
+
+.method-card:hover {
+  animation-play-state: paused;
 }
 
 .perspective-card {
@@ -168,9 +170,30 @@ button {
   }
 }
 
+@keyframes method-drift {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  28% {
+    transform: translate3d(calc(var(--method-distance, 70px) * 0.65), var(--method-lift, 8px), 0);
+  }
+
+  63% {
+    transform: translate3d(calc(var(--method-distance, 70px) * -0.24), calc(var(--method-lift, 8px) * -0.7), 0);
+  }
+
+  100% {
+    transform: translate3d(var(--method-distance, 70px), calc(var(--method-lift, 8px) * 0.35), 0);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  .snap-pair {
     scroll-snap-type: none;
   }
 

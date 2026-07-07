@@ -14,7 +14,6 @@ export function LogoIntroSection() {
       className="snap-section relative flex min-h-screen items-center justify-center overflow-hidden px-6 py-24"
       aria-labelledby="positioning-heading"
     >
-      <div className="absolute inset-x-0 top-0 h-px bg-divider" />
       <SideNav />
       <div className="text-center">
         <motion.div
@@ -27,10 +26,10 @@ export function LogoIntroSection() {
           <div className="mx-auto flex w-72 flex-col items-center sm:w-96">
             {!logoFailed ? (
               <Image
-                src="/images/logos/mb-logo-transparent.png"
+                src="/images/logos/misbehavity-logo.png"
                 alt="Misbehavity"
-                width={520}
-                height={520}
+                width={471}
+                height={326}
                 priority
                 className="h-auto w-full"
                 onError={() => setLogoFailed(true)}

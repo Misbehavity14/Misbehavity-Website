@@ -1,7 +1,7 @@
 const navItems = [
-  { label: "How We Misbehave", href: "#misbehave" },
-  { label: "Our Troubled (successful) Past", href: "#past" },
-  { label: "Tell us what’s troubling you?", href: "#contact" },
+  { label: "How we misbehave", href: "#misbehave" },
+  { label: "Our troubled past", href: "#past" },
+  { label: "Tell us what’s troubling you", href: "#contact" },
 ];
 
 export function SideNav() {

@@ -1,5 +1,6 @@
 "use client";
 
+import type { CSSProperties } from "react";
 import { motion } from "framer-motion";
 
 const methods = [
@@ -7,33 +8,37 @@ const methods = [
     title: "Find the Moat",
     body: "Find the unfair advantage of your business.",
     className: "md:left-[54%] md:top-[18%]",
-    hoverX: [0, 18, -10, 8, 0],
-    hoverY: [0, -10, 7, -4, 0],
-    hoverRotate: [0, 1.2, -0.7, 0.4, 0],
+    distance: "72px",
+    lift: "-10px",
+    duration: "7.8s",
+    delay: "-1.4s",
   },
   {
     title: "Sharpen the Moat",
     body: "Figure out how people understand your moat.",
     className: "md:left-[43%] md:top-[36%]",
-    hoverX: [0, -20, 8, -6, 0],
-    hoverY: [0, 8, -12, 5, 0],
-    hoverRotate: [0, -1.4, 0.8, -0.4, 0],
+    distance: "-66px",
+    lift: "8px",
+    duration: "9.2s",
+    delay: "-4s",
   },
   {
     title: "Build the Brand",
     body: "Crack strategy, positioning, architecture, GTM, & identity.",
     className: "md:left-[59%] md:top-[51%]",
-    hoverX: [0, 22, -12, 10, 0],
-    hoverY: [0, 11, -9, 4, 0],
-    hoverRotate: [0, 1.1, -1.2, 0.5, 0],
+    distance: "84px",
+    lift: "12px",
+    duration: "8.4s",
+    delay: "-2.6s",
   },
   {
     title: "Scale the Brand",
     body: "Execute efforts that lead to meaningful growth",
     className: "md:left-[50%] md:top-[69%]",
-    hoverX: [0, -16, 12, -8, 0],
-    hoverY: [0, -9, 10, -5, 0],
-    hoverRotate: [0, -0.9, 1.3, -0.5, 0],
+    distance: "-76px",
+    lift: "-7px",
+    duration: "10.1s",
+    delay: "-5.2s",
   },
 ];
 
@@ -44,7 +49,6 @@ export function MisbehaveSection() {
       className="relative min-h-screen overflow-hidden px-6 py-24"
       aria-labelledby="misbehave-heading"
     >
-      <div className="absolute inset-x-0 top-0 h-px bg-divider" />
       <div className="relative mx-auto flex min-h-[calc(100svh-12rem)] w-full max-w-7xl flex-col justify-center">
         <h2
           id="misbehave-heading"
@@ -56,22 +60,19 @@ export function MisbehaveSection() {
           {methods.map((method, index) => (
             <motion.article
               key={method.title}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              whileHover={{
-                x: method.hoverX,
-                y: method.hoverY,
-                rotate: method.hoverRotate,
-                transition: {
-                  duration: 0.9,
-                  ease: "easeInOut",
-                  repeat: Infinity,
-                  repeatType: "mirror",
-                },
-              }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
               viewport={{ once: true, amount: 0.4 }}
               transition={{ duration: 0.6, delay: index * 0.12 }}
-              className={`rounded-md bg-accent p-5 text-background shadow-2xl md:absolute md:w-[31rem] ${method.className}`}
+              className={`method-card rounded-md bg-accent p-5 text-background shadow-2xl md:absolute md:w-[31rem] ${method.className}`}
+              style={
+                {
+                  "--method-distance": method.distance,
+                  "--method-lift": method.lift,
+                  "--method-duration": method.duration,
+                  "--method-delay": method.delay,
+                } as CSSProperties
+              }
             >
               <h3 className="text-xl font-black">{method.title}</h3>
               <p className="mt-1 text-xl leading-snug text-background/65">

@@ -4,11 +4,11 @@ import type { CSSProperties } from "react";
 import { motion } from "framer-motion";
 
 const marqueeLines = [
-  { direction: "normal", duration: 42, yellow: [0] },
-  { direction: "reverse", duration: 48, yellow: [1, 2] },
-  { direction: "normal", duration: 54, yellow: [3, 4] },
-  { direction: "reverse", duration: 46, yellow: [5] },
-  { direction: "normal", duration: 58, yellow: [6] },
+  { direction: "normal", duration: 34, yellow: [0] },
+  { direction: "reverse", duration: 47, yellow: [1, 2] },
+  { direction: "normal", duration: 61, yellow: [3, 4] },
+  { direction: "reverse", duration: 39, yellow: [5] },
+  { direction: "normal", duration: 72, yellow: [6] },
 ];
 
 const words = "WITHOUT A MOAT, THERE IS NO BRAND".split(" ");
@@ -63,7 +63,6 @@ export function HeroSection() {
       className="snap-section relative grid min-h-screen grid-rows-[auto_1fr] overflow-hidden"
       aria-label="Hero section with moving moat statement"
     >
-      <div className="absolute inset-x-0 top-0 h-px bg-divider" />
       <h1 className="sr-only">
         Without a moat, there is no brand. We find your moat and build a brand
         out of it.
@@ -81,7 +80,7 @@ export function HeroSection() {
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 1.05, ease: "easeOut" }}
-        className="mx-auto flex max-w-3xl items-center px-6 text-center font-serif text-lg font-normal tracking-wide text-foreground/82 sm:text-2xl"
+        className="mx-auto flex max-w-3xl items-center px-6 text-center font-serif text-base font-normal tracking-wide text-foreground/82 sm:text-xl md:text-2xl"
       >
         We find your moat and build a brand out of it.
       </motion.p>

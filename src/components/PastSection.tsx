@@ -4,17 +4,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { clientLogos } from "@/data/clientLogos";
-
-const troubledLetters = [
-  { letter: "T", className: "font-sans font-black -rotate-3 translate-y-1" },
-  { letter: "R", className: "font-serif font-bold italic rotate-2 -translate-y-2" },
-  { letter: "O", className: "font-mono font-black rotate-1 translate-y-1" },
-  { letter: "U", className: "font-sans font-light italic -rotate-2 -translate-y-1" },
-  { letter: "B", className: "font-serif font-black rotate-3 translate-y-2" },
-  { letter: "L", className: "font-mono font-bold -rotate-1 -translate-y-2" },
-  { letter: "E", className: "font-sans font-black italic rotate-2 translate-y-1" },
-  { letter: "D", className: "font-serif font-bold -rotate-3" },
-];
+import { TroubledWord } from "@/components/TroubledWord";
 
 function ClientLogoTile({
   name,
@@ -63,24 +53,13 @@ export function PastSection() {
       className="relative min-h-screen px-6 py-24"
       aria-labelledby="past-heading"
     >
-      <div className="absolute inset-x-0 top-0 h-px bg-divider" />
       <div className="mx-auto flex min-h-[calc(100svh-12rem)] w-full max-w-7xl flex-col justify-center">
         <h2
           id="past-heading"
-          className="max-w-6xl text-4xl font-black uppercase tracking-[0.12em] text-foreground sm:text-6xl"
+          className="max-w-6xl text-4xl font-black tracking-[0.06em] text-foreground sm:text-6xl"
         >
-          Our{" "}
-          <span
-            className="mx-3 inline-flex items-baseline gap-1 tracking-[0.16em]"
-            aria-label="Troubled"
-          >
-            {troubledLetters.map((item, index) => (
-              <span key={`${item.letter}-${index}`} className={item.className}>
-                {item.letter}
-              </span>
-            ))}
-          </span>{" "}
-          (successful) Past
+          Who we have <TroubledWord className="mx-2 tracking-[0.14em]" /> in
+          the past
         </h2>
         <div className="mt-20 grid grid-cols-2 gap-x-8 gap-y-12 sm:grid-cols-3 lg:grid-cols-4">
           {clientLogos.map((client, index) => (

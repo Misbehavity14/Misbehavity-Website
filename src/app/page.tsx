@@ -14,8 +14,10 @@ export default function Home() {
     >
       <ParticleBackground />
       <div className="relative z-10">
-        <HeroSection />
-        <LogoIntroSection />
+        <div className="snap-pair max-h-screen overflow-y-auto">
+          <HeroSection />
+          <LogoIntroSection />
+        </div>
         <MisbehaveSection />
         <PastSection />
         <CaseStudyGrid />
