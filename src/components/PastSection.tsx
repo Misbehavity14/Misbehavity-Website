@@ -56,10 +56,14 @@ export function PastSection() {
       <div className="mx-auto flex min-h-[calc(100svh-12rem)] w-full max-w-7xl flex-col justify-center">
         <h2
           id="past-heading"
-          className="max-w-6xl text-4xl font-black tracking-[0.06em] text-foreground sm:text-6xl"
+          className="flex max-w-6xl flex-col items-start gap-2 text-4xl font-black tracking-[0.06em] text-foreground sm:text-6xl"
         >
-          Who we have <TroubledWord className="mx-2 tracking-[0.14em]" /> in
-          the past
+          <span>Who we have</span>
+          <TroubledWord
+            className="translate-x-8 text-5xl tracking-[0.16em] sm:text-7xl"
+            word="TROUBLED"
+          />
+          <span>in the past</span>
         </h2>
         <div className="mt-20 grid grid-cols-2 gap-x-8 gap-y-12 sm:grid-cols-3 lg:grid-cols-4">
           {clientLogos.map((client, index) => (

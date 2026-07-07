@@ -44,15 +44,15 @@ export function ParticleBackground() {
 
     const createParticles = () => {
       const isMobile = window.innerWidth < 768;
-      const count = prefersReducedMotion.matches ? 0 : isMobile ? 58 : 132;
+      const count = prefersReducedMotion.matches ? 0 : isMobile ? 92 : 220;
 
       particles = Array.from({ length: count }, () => ({
         x: Math.random() * width,
         y: Math.random() * height,
-        vx: (Math.random() - 0.5) * 0.34,
-        vy: (Math.random() - 0.5) * 0.3,
-        size: Math.random() * 1.35 + 0.35,
-        alpha: Math.random() * 0.48 + 0.16,
+        vx: (Math.random() - 0.5) * 0.42,
+        vy: (Math.random() - 0.5) * 0.36,
+        size: Math.random() * 1.9 + 0.45,
+        alpha: Math.random() * 0.56 + 0.22,
       }));
     };
 
@@ -75,10 +75,10 @@ export function ParticleBackground() {
         const dy = particle.y - pointer.y;
         const distance = Math.hypot(dx, dy);
 
-        if (distance < 110) {
-          const force = (110 - distance) / 110;
-          particle.vx += (dx / Math.max(distance, 1)) * force * 0.024;
-          particle.vy += (dy / Math.max(distance, 1)) * force * 0.024;
+        if (distance < 155) {
+          const force = (155 - distance) / 155;
+          particle.vx += (dx / Math.max(distance, 1)) * force * 0.045;
+          particle.vy += (dy / Math.max(distance, 1)) * force * 0.045;
         }
 
         particle.x += particle.vx;
@@ -93,7 +93,7 @@ export function ParticleBackground() {
 
         context.fillStyle =
           particleColors[Math.floor((particle.x + particle.y) % particleColors.length)];
-        context.globalAlpha = particle.alpha * 0.5;
+        context.globalAlpha = particle.alpha * 0.78;
         context.beginPath();
         context.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
         context.fill();
@@ -150,7 +150,7 @@ export function ParticleBackground() {
     <canvas
       ref={canvasRef}
       aria-hidden="true"
-      className="pointer-events-none fixed inset-0 z-0 opacity-60"
+      className="pointer-events-none fixed inset-0 z-0 opacity-75"
     />
   );
 }

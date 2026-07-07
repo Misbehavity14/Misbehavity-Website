@@ -122,14 +122,29 @@ button {
   text-transform: uppercase;
 }
 
-.method-card {
-  animation: method-drift var(--method-duration, 8s) ease-in-out infinite
-    alternate;
+.method-lane {
+  position: absolute;
+  left: 50%;
+  width: 100vw;
+  transform: translateX(-50%);
+}
+
+.method-card-travel {
+  animation: method-card-marquee var(--method-duration, 18s) linear infinite;
   animation-delay: var(--method-delay, 0s);
+  animation-direction: var(--method-direction, normal);
   will-change: transform;
 }
 
-.method-card:hover {
+.method-card-mobile {
+  animation: method-card-mobile var(--method-duration, 18s) linear infinite;
+  animation-delay: var(--method-delay, 0s);
+  animation-direction: var(--method-direction, normal);
+  will-change: transform;
+}
+
+.method-card-travel:hover,
+.method-card-mobile:hover {
   animation-play-state: paused;
 }
 
@@ -170,21 +185,23 @@ button {
   }
 }
 
-@keyframes method-drift {
-  0% {
-    transform: translate3d(0, 0, 0);
+@keyframes method-card-marquee {
+  from {
+    transform: translate3d(-38rem, 0, 0);
   }
 
-  28% {
-    transform: translate3d(calc(var(--method-distance, 70px) * 0.65), var(--method-lift, 8px), 0);
+  to {
+    transform: translate3d(calc(100vw + 38rem), 0, 0);
+  }
+}
+
+@keyframes method-card-mobile {
+  from {
+    transform: translate3d(-110%, 0, 0);
   }
 
-  63% {
-    transform: translate3d(calc(var(--method-distance, 70px) * -0.24), calc(var(--method-lift, 8px) * -0.7), 0);
-  }
-
-  100% {
-    transform: translate3d(var(--method-distance, 70px), calc(var(--method-lift, 8px) * 0.35), 0);
+  to {
+    transform: translate3d(110%, 0, 0);
   }
 }
 

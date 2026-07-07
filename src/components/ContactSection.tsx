@@ -11,10 +11,16 @@ export function ContactSection() {
       <div className="mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center gap-14 pb-16">
         <h2
           id="contact-heading"
-          className="max-w-5xl text-4xl font-semibold uppercase leading-tight tracking-[0.08em] text-foreground sm:text-6xl"
+          className="max-w-5xl text-4xl font-semibold leading-tight tracking-[0.08em] text-foreground sm:text-5xl"
         >
-          Tell us what&rsquo;s <TroubledWord className="mx-2 tracking-[0.12em]" />{" "}
-          you?
+          <span className="block uppercase">TELL US WHAT&rsquo;S</span>
+          <span className="mt-2 block">
+            <TroubledWord
+              className="mr-3 normal-case tracking-[0.08em]"
+              word="Troubling"
+            />
+            YOU?
+          </span>
         </h2>
 
         <div className="grid gap-12 lg:grid-cols-[minmax(20rem,28rem)_1fr] lg:items-center">

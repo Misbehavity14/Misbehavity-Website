@@ -60,14 +60,14 @@ export function HeroSection() {
   return (
     <section
       id="hero"
-      className="snap-section relative grid min-h-screen grid-rows-[auto_1fr] overflow-hidden"
+      className="snap-section relative flex min-h-screen flex-col overflow-hidden"
       aria-label="Hero section with moving moat statement"
     >
       <h1 className="sr-only">
         Without a moat, there is no brand. We find your moat and build a brand
         out of it.
       </h1>
-      <div className="-mt-1 space-y-2 sm:-mt-2 sm:space-y-4">
+      <div className="-mt-1 flex-none space-y-2 sm:-mt-2 sm:space-y-4">
         {marqueeLines.map((line, index) => (
           <MarqueeLine
             key={`${line.direction}-${line.duration}`}
@@ -76,14 +76,11 @@ export function HeroSection() {
           />
         ))}
       </div>
-      <motion.p
-        initial={{ opacity: 0, y: 12 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 1.05, ease: "easeOut" }}
-        className="mx-auto flex max-w-3xl items-center px-6 text-center font-serif text-base font-normal tracking-wide text-foreground/82 sm:text-xl md:text-2xl"
-      >
-        We find your moat and build a brand out of it.
-      </motion.p>
+      <div className="relative z-10 flex min-h-40 flex-1 items-center justify-center px-6 py-8">
+        <p className="mx-auto max-w-3xl text-center font-serif text-base font-normal tracking-wide text-foreground/88 sm:text-xl md:text-2xl">
+          We find your moat and build a brand out of it.
+        </p>
+      </div>
     </section>
   );
 }

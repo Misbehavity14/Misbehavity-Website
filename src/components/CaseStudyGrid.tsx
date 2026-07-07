@@ -25,7 +25,7 @@ export function CaseStudyGrid() {
             >
               <span className="block">Our</span>
               <span className="block">
-                <TroubledWord className="mr-3 tracking-[0.14em]" />{" "}
+                <TroubledWord className="mr-3 tracking-[0.14em]" word="TROUBLED" />{" "}
                 (successful) Past
               </span>
             </h2>

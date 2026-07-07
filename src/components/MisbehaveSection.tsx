@@ -7,38 +7,34 @@ const methods = [
   {
     title: "Find the Moat",
     body: "Find the unfair advantage of your business.",
-    className: "md:left-[54%] md:top-[18%]",
-    distance: "72px",
-    lift: "-10px",
-    duration: "7.8s",
-    delay: "-1.4s",
+    top: "18%",
+    duration: "15s",
+    delay: "-2s",
+    direction: "normal",
   },
   {
     title: "Sharpen the Moat",
     body: "Figure out how people understand your moat.",
-    className: "md:left-[43%] md:top-[36%]",
-    distance: "-66px",
-    lift: "8px",
-    duration: "9.2s",
-    delay: "-4s",
+    top: "36%",
+    duration: "19s",
+    delay: "-9s",
+    direction: "reverse",
   },
   {
     title: "Build the Brand",
     body: "Crack strategy, positioning, architecture, GTM, & identity.",
-    className: "md:left-[59%] md:top-[51%]",
-    distance: "84px",
-    lift: "12px",
-    duration: "8.4s",
-    delay: "-2.6s",
+    top: "53%",
+    duration: "17s",
+    delay: "-5s",
+    direction: "normal",
   },
   {
     title: "Scale the Brand",
     body: "Execute efforts that lead to meaningful growth",
-    className: "md:left-[50%] md:top-[69%]",
-    distance: "-76px",
-    lift: "-7px",
-    duration: "10.1s",
-    delay: "-5.2s",
+    top: "70%",
+    duration: "22s",
+    delay: "-13s",
+    direction: "reverse",
   },
 ];
 
@@ -56,21 +52,50 @@ export function MisbehaveSection() {
         >
           How We Misbehave
         </h2>
-        <div className="mt-12 grid w-full gap-5 md:absolute md:inset-0 md:mt-0 md:block">
+        <div className="pointer-events-none absolute inset-0 hidden md:block">
+          {methods.map((method, index) => (
+            <div
+              key={method.title}
+              className="method-lane"
+              style={{ top: method.top } as CSSProperties}
+            >
+              <motion.article
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true, amount: 0.25 }}
+                transition={{ duration: 0.45, delay: index * 0.1 }}
+                className="method-card-travel pointer-events-auto w-[31rem] rounded-md bg-accent p-5 text-background shadow-2xl"
+                style={
+                  {
+                    "--method-duration": method.duration,
+                    "--method-delay": method.delay,
+                    "--method-direction": method.direction,
+                  } as CSSProperties
+                }
+              >
+                <h3 className="text-xl font-black">{method.title}</h3>
+                <p className="mt-1 text-xl leading-snug text-background/65">
+                  {method.body}
+                </p>
+              </motion.article>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-12 grid w-full gap-5 md:hidden">
           {methods.map((method, index) => (
             <motion.article
               key={method.title}
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
-              viewport={{ once: true, amount: 0.4 }}
-              transition={{ duration: 0.6, delay: index * 0.12 }}
-              className={`method-card rounded-md bg-accent p-5 text-background shadow-2xl md:absolute md:w-[31rem] ${method.className}`}
+              viewport={{ once: true, amount: 0.25 }}
+              transition={{ duration: 0.45, delay: index * 0.1 }}
+              className="method-card-mobile rounded-md bg-accent p-5 text-background shadow-2xl"
               style={
                 {
-                  "--method-distance": method.distance,
-                  "--method-lift": method.lift,
                   "--method-duration": method.duration,
                   "--method-delay": method.delay,
+                  "--method-direction": method.direction,
                 } as CSSProperties
               }
             >
