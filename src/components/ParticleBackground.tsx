@@ -43,15 +43,15 @@ export function ParticleBackground() {
 
     const createParticles = () => {
       const isMobile = window.innerWidth < 768;
-      const count = prefersReducedMotion.matches ? 0 : isMobile ? 34 : 72;
+      const count = prefersReducedMotion.matches ? 0 : isMobile ? 42 : 96;
 
       particles = Array.from({ length: count }, () => ({
         x: Math.random() * width,
         y: Math.random() * height,
-        vx: (Math.random() - 0.5) * 0.22,
-        vy: (Math.random() - 0.5) * 0.22,
-        size: Math.random() * 1.4 + 0.35,
-        alpha: Math.random() * 0.34 + 0.08,
+        vx: (Math.random() - 0.5) * 0.28,
+        vy: (Math.random() - 0.5) * 0.28,
+        size: Math.random() * 1.15 + 0.3,
+        alpha: Math.random() * 0.42 + 0.1,
       }));
     };
 
@@ -78,8 +78,8 @@ export function ParticleBackground() {
 
         if (distance < 110) {
           const force = (110 - distance) / 110;
-          particle.vx += (dx / Math.max(distance, 1)) * force * 0.018;
-          particle.vy += (dy / Math.max(distance, 1)) * force * 0.018;
+          particle.vx += (dx / Math.max(distance, 1)) * force * 0.024;
+          particle.vy += (dy / Math.max(distance, 1)) * force * 0.024;
         }
 
         particle.x += particle.vx;
@@ -92,7 +92,7 @@ export function ParticleBackground() {
         if (particle.y < -8) particle.y = height + 8;
         if (particle.y > height + 8) particle.y = -8;
 
-        context.globalAlpha = particle.alpha * 0.42;
+        context.globalAlpha = particle.alpha * 0.36;
         context.beginPath();
         context.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
         context.fill();
@@ -149,7 +149,7 @@ export function ParticleBackground() {
     <canvas
       ref={canvasRef}
       aria-hidden="true"
-      className="pointer-events-none fixed inset-0 z-0 opacity-35"
+      className="pointer-events-none fixed inset-0 z-0 opacity-45"
     />
   );
 }

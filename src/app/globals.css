@@ -1,12 +1,12 @@
 @import "tailwindcss";
 
 :root {
-  --color-bg: #12110f;
-  --color-bg-soft: #1b1915;
+  --color-bg: #262523;
+  --color-bg-soft: #302e2a;
   --color-text: #f4f0e8;
   --color-muted: #9d9689;
   --color-yellow: #ffd400;
-  --color-line: #343028;
+  --color-line: #46423a;
   --system-sans: Arial, Helvetica, sans-serif;
   --system-mono: "Courier New", Courier, monospace;
 }
@@ -34,6 +34,18 @@ body {
   color: var(--color-text);
   font-family: var(--system-sans);
   text-rendering: geometricPrecision;
+}
+
+body::before {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  content: "";
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.014) 1px, transparent 1px);
+  background-size: 72px 72px;
 }
 
 ::selection {
@@ -88,6 +100,7 @@ button {
 
 .snap-section {
   scroll-snap-align: start;
+  scroll-snap-stop: always;
 }
 
 .marquee-line {
@@ -111,21 +124,11 @@ button {
   display: flex;
   gap: 0.35em;
   padding-right: 0.35em;
-  font-size: clamp(4.5rem, 8.4vw, 10rem);
+  font-size: clamp(4.1rem, 8.2vw, 9.6rem);
   font-weight: 900;
   line-height: 0.86;
   letter-spacing: 0.02em;
   text-transform: uppercase;
-}
-
-.drift-card {
-  animation: drift-card var(--drift-duration, 12s) ease-in-out infinite alternate;
-  animation-delay: var(--drift-delay, 0s);
-  will-change: transform;
-}
-
-.drift-card:hover {
-  animation-play-state: paused;
 }
 
 .perspective-card {
@@ -162,16 +165,6 @@ button {
 
   to {
     transform: translate3d(-50%, 0, 0);
-  }
-}
-
-@keyframes drift-card {
-  from {
-    transform: translate3d(0, 0, 0);
-  }
-
-  to {
-    transform: translate3d(var(--drift-distance, 48px), 0, 0);
   }
 }
 

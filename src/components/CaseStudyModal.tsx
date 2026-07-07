@@ -88,7 +88,7 @@ export function CaseStudyModal({ caseStudy, onClose }: CaseStudyModalProps) {
               onClick={onClose}
               className="absolute right-4 top-4 z-10 border border-divider px-3 py-2 font-mono text-xs uppercase tracking-[0.18em] text-foreground transition hover:border-accent hover:text-accent"
             >
-              Close
+              ENOUGH!
             </button>
 
             <aside className="border border-divider p-5">

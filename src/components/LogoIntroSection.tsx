@@ -1,9 +1,13 @@
 "use client";
 
+import Image from "next/image";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { SideNav } from "@/components/SideNav";
 
 export function LogoIntroSection() {
+  const [logoFailed, setLogoFailed] = useState(false);
+
   return (
     <section
       id="intro"
@@ -20,13 +24,29 @@ export function LogoIntroSection() {
           transition={{ duration: 0.7, ease: "easeOut" }}
           className="mx-auto"
         >
-          {/* Replace this stylised placeholder with the final Misbehavity logo asset later. */}
-          <div className="mx-auto flex h-28 w-72 items-end justify-center text-[8rem] font-black leading-none tracking-[-0.12em] text-accent sm:h-36 sm:w-96 sm:text-[10rem]">
-            mb
+          <div className="mx-auto flex w-72 flex-col items-center sm:w-96">
+            {!logoFailed ? (
+              <Image
+                src="/images/logos/mb-logo-transparent.png"
+                alt="Misbehavity"
+                width={520}
+                height={520}
+                priority
+                className="h-auto w-full"
+                onError={() => setLogoFailed(true)}
+              />
+            ) : (
+              <div className="text-center">
+                {/* Replace this fallback with the final transparent Misbehavity logo asset when available. */}
+                <div className="text-[7.5rem] font-black leading-[0.7] tracking-[-0.14em] text-accent sm:text-[9rem]">
+                  mb
+                </div>
+                <p className="mt-8 text-lg tracking-[0.55em] text-muted-copy sm:text-2xl">
+                  Misbehavity
+                </p>
+              </div>
+            )}
           </div>
-          <p className="mt-2 text-lg tracking-[0.55em] text-muted-copy sm:text-2xl">
-            Misbehavity
-          </p>
         </motion.div>
         <motion.p
           id="positioning-heading"
@@ -34,7 +54,7 @@ export function LogoIntroSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.6 }}
           transition={{ duration: 0.75, delay: 0.28, ease: "easeOut" }}
-          className="mt-10 font-serif text-2xl font-semibold italic text-foreground/90 sm:text-4xl"
+          className="mt-8 font-serif text-xl font-normal italic text-foreground/88 sm:text-3xl"
         >
           Cooler than consulting. Sharper than agencies
         </motion.p>

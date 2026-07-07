@@ -4,11 +4,11 @@ import type { CSSProperties } from "react";
 import { motion } from "framer-motion";
 
 const marqueeLines = [
-  { direction: "normal", duration: 42, muted: [0, 8], yellow: [3] },
-  { direction: "reverse", duration: 48, muted: [2, 6], yellow: [5] },
-  { direction: "normal", duration: 54, muted: [1, 7], yellow: [8] },
-  { direction: "reverse", duration: 46, muted: [4], yellow: [2] },
-  { direction: "normal", duration: 58, muted: [5, 9], yellow: [0] },
+  { direction: "normal", duration: 42, yellow: [0] },
+  { direction: "reverse", duration: 48, yellow: [1, 2] },
+  { direction: "normal", duration: 54, yellow: [3, 4] },
+  { direction: "reverse", duration: 46, yellow: [5] },
+  { direction: "normal", duration: 58, yellow: [6] },
 ];
 
 const words = "WITHOUT A MOAT, THERE IS NO BRAND".split(" ");
@@ -39,18 +39,11 @@ function MarqueeLine({
             {phrase.map((word, wordIndex) => {
               const normalizedIndex = wordIndex % words.length;
               const isYellow = line.yellow.includes(normalizedIndex);
-              const isMuted = line.muted.includes(normalizedIndex);
 
               return (
                 <span
                   key={`${copy}-${wordIndex}`}
-                  className={
-                    isYellow
-                      ? "text-accent"
-                      : isMuted
-                        ? "text-foreground/25"
-                        : "text-foreground"
-                  }
+                  className={isYellow ? "text-accent" : "text-foreground/95"}
                 >
                   {word}
                 </span>
@@ -67,7 +60,7 @@ export function HeroSection() {
   return (
     <section
       id="hero"
-      className="snap-section relative flex min-h-screen flex-col justify-center overflow-hidden py-8"
+      className="snap-section relative grid min-h-screen grid-rows-[auto_1fr] overflow-hidden"
       aria-label="Hero section with moving moat statement"
     >
       <div className="absolute inset-x-0 top-0 h-px bg-divider" />
@@ -75,7 +68,7 @@ export function HeroSection() {
         Without a moat, there is no brand. We find your moat and build a brand
         out of it.
       </h1>
-      <div className="space-y-3 sm:space-y-5">
+      <div className="-mt-1 space-y-2 sm:-mt-2 sm:space-y-4">
         {marqueeLines.map((line, index) => (
           <MarqueeLine
             key={`${line.direction}-${line.duration}`}
@@ -88,7 +81,7 @@ export function HeroSection() {
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 1.05, ease: "easeOut" }}
-        className="absolute inset-x-6 bottom-[13vh] mx-auto max-w-3xl text-center font-serif text-xl font-semibold tracking-wide text-foreground/85 sm:text-3xl"
+        className="mx-auto flex max-w-3xl items-center px-6 text-center font-serif text-lg font-normal tracking-wide text-foreground/82 sm:text-2xl"
       >
         We find your moat and build a brand out of it.
       </motion.p>
