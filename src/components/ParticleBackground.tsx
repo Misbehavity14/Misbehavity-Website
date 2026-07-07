@@ -36,6 +36,10 @@ export function ParticleBackground() {
     let width = 0;
     let height = 0;
     let isVisible = !document.hidden;
+    const particleColor =
+      getComputedStyle(document.documentElement)
+        .getPropertyValue("--color-yellow")
+        .trim() || "#ffd400";
 
     const createParticles = () => {
       const isMobile = window.innerWidth < 768;
@@ -65,7 +69,7 @@ export function ParticleBackground() {
 
     const draw = () => {
       context.clearRect(0, 0, width, height);
-      context.fillStyle = "rgba(255, 212, 0, 0.42)";
+      context.fillStyle = particleColor;
 
       for (const particle of particles) {
         const dx = particle.x - pointer.x;
@@ -88,7 +92,7 @@ export function ParticleBackground() {
         if (particle.y < -8) particle.y = height + 8;
         if (particle.y > height + 8) particle.y = -8;
 
-        context.globalAlpha = particle.alpha;
+        context.globalAlpha = particle.alpha * 0.42;
         context.beginPath();
         context.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
         context.fill();

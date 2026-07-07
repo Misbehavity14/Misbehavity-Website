@@ -68,8 +68,13 @@ export function HeroSection() {
     <section
       id="hero"
       className="snap-section relative flex min-h-screen flex-col justify-center overflow-hidden py-8"
+      aria-label="Hero section with moving moat statement"
     >
       <div className="absolute inset-x-0 top-0 h-px bg-divider" />
+      <h1 className="sr-only">
+        Without a moat, there is no brand. We find your moat and build a brand
+        out of it.
+      </h1>
       <div className="space-y-3 sm:space-y-5">
         {marqueeLines.map((line, index) => (
           <MarqueeLine

@@ -18,6 +18,7 @@ export function CaseStudyCard({ caseStudy, onSelect }: CaseStudyCardProps) {
       transition={{ type: "spring", stiffness: 260, damping: 24 }}
       className="group aspect-square w-full perspective-card"
       aria-label={`Open case study ${caseStudy.number}: ${caseStudy.title}`}
+      data-image-path={caseStudy.imagePath}
     >
       <span className="relative block h-full w-full transition-transform duration-700 preserve-3d group-hover:rotate-y-180">
         <span className="absolute inset-0 block backface-hidden border border-divider bg-surface p-4">

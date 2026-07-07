@@ -126,6 +126,7 @@ export function CaseStudyModal({ caseStudy, onClose }: CaseStudyModalProps) {
               >
                 {caseStudy.situation}
               </EvidenceNote>
+              {/* Replace evidence-note styling with final photographed/illustrated assets only if real assets are added later. */}
               <div className="mt-8 grid gap-6 lg:grid-cols-2">
                 <EvidenceNote label="The Diagnosis" className="rotate-[1deg]">
                   {caseStudy.diagnosis}

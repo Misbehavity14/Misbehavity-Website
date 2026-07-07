@@ -43,10 +43,14 @@ export function MisbehaveSection() {
     <section
       id="misbehave"
       className="relative min-h-screen overflow-hidden px-6 py-24"
+      aria-labelledby="misbehave-heading"
     >
       <div className="absolute inset-x-0 top-0 h-px bg-divider" />
       <div className="mx-auto flex min-h-[calc(100svh-12rem)] w-full max-w-7xl flex-col justify-center md:block">
-        <h2 className="pointer-events-none select-none text-6xl font-black uppercase leading-none tracking-[0.12em] text-foreground sm:text-8xl lg:text-[8.6rem]">
+        <h2
+          id="misbehave-heading"
+          className="pointer-events-none select-none text-6xl font-black uppercase leading-none tracking-[0.12em] text-foreground sm:text-8xl lg:text-[8.6rem]"
+        >
           How We Misbehave
         </h2>
         <div className="mt-12 grid w-full gap-5 md:absolute md:inset-0 md:mt-0 md:block">

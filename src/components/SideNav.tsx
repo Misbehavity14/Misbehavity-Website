@@ -15,6 +15,7 @@ export function SideNav() {
           <li key={item.href}>
             <a
               href={item.href}
+              aria-label={`Jump to ${item.label}`}
               className="group flex w-full origin-right items-center justify-between gap-5 py-3 text-left text-lg font-semibold text-background/60 transition duration-300 hover:-translate-x-8 hover:text-background"
             >
               <span className="max-w-44 truncate transition-all duration-300 group-hover:max-w-64">

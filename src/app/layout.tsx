@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Misbehavity Website Foundation",
-  description: "Technical foundation for a one-page animated landing website.",
+  title: "Misbehavity | Build Brands With Moats",
+  description:
+    "Misbehavity finds your moat and builds a sharper brand out of it.",
 };
 
 export default function RootLayout({

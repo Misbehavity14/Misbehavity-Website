@@ -5,10 +5,17 @@ import { clientLogos } from "@/data/clientLogos";
 
 export function PastSection() {
   return (
-    <section id="past" className="relative min-h-screen px-6 py-24">
+    <section
+      id="past"
+      className="relative min-h-screen px-6 py-24"
+      aria-labelledby="past-heading"
+    >
       <div className="absolute inset-x-0 top-0 h-px bg-divider" />
       <div className="mx-auto flex min-h-[calc(100svh-12rem)] w-full max-w-7xl flex-col justify-center">
-        <h2 className="max-w-5xl text-4xl font-black uppercase tracking-[0.14em] text-foreground sm:text-6xl">
+        <h2
+          id="past-heading"
+          className="max-w-5xl text-4xl font-black uppercase tracking-[0.14em] text-foreground sm:text-6xl"
+        >
           Our <span className="font-serif italic tracking-[0.3em]">Troubled</span>{" "}
           (successful) Past
         </h2>
@@ -22,6 +29,7 @@ export function PastSection() {
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.45, delay: index * 0.035 }}
               className="flex min-h-20 items-center justify-center text-center grayscale transition"
+              aria-label={`${client.name} logo placeholder`}
             >
               {/* Replace placeholder text with the real logo image later: client.logoPath */}
               <span className="text-3xl font-black tracking-tight text-foreground/65">

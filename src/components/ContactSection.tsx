@@ -1,16 +1,26 @@
 export function ContactSection() {
   return (
-    <section id="contact" className="relative min-h-screen px-6 py-20">
+    <section
+      id="contact"
+      className="relative min-h-screen px-6 py-20"
+      aria-labelledby="contact-heading"
+    >
       <div className="absolute inset-x-0 top-0 h-px bg-divider" />
       <div className="mx-auto flex min-h-[calc(100svh-10rem)] w-full max-w-7xl flex-col justify-between gap-14">
-        <h2 className="max-w-5xl text-5xl font-black uppercase leading-tight tracking-[0.08em] text-foreground sm:text-7xl">
+        <h2
+          id="contact-heading"
+          className="max-w-5xl text-5xl font-black uppercase leading-tight tracking-[0.08em] text-foreground sm:text-7xl"
+        >
           Tell us what’s{" "}
           <span className="font-serif italic tracking-[0.2em]">troubling</span>{" "}
           you?
         </h2>
 
         <div className="grid gap-12 lg:grid-cols-[30rem_1fr] lg:items-center">
-          <form className="border-2 border-accent p-8 text-accent sm:p-10">
+          <form
+            className="border-2 border-accent p-8 text-accent sm:p-10"
+            aria-label="Misbehavity contact form"
+          >
             <h3 className="text-4xl font-medium text-accent">Contact Form</h3>
             <label className="mt-9 block">
               <span className="text-lg font-bold">Name</span>

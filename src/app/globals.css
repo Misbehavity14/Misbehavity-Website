@@ -33,6 +33,7 @@ body {
   background: var(--color-bg);
   color: var(--color-text);
   font-family: var(--system-sans);
+  text-rendering: geometricPrecision;
 }
 
 ::selection {
@@ -43,6 +44,16 @@ body {
 section {
   min-height: 100svh;
   scroll-margin-top: 2rem;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
 }
 
 @layer components {

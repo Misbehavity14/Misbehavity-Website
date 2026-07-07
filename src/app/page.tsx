@@ -8,7 +8,10 @@ import { PastSection } from "@/components/PastSection";
 
 export default function Home() {
   return (
-    <main className="relative min-h-screen overflow-hidden bg-background text-foreground">
+    <main
+      className="relative min-h-screen overflow-hidden bg-background text-foreground"
+      aria-label="Misbehavity one-page landing website"
+    >
       <ParticleBackground />
       <div className="relative z-10">
         <HeroSection />

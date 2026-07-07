@@ -8,6 +8,7 @@ export function LogoIntroSection() {
     <section
       id="intro"
       className="snap-section relative flex min-h-screen items-center justify-center overflow-hidden px-6 py-24"
+      aria-labelledby="positioning-heading"
     >
       <div className="absolute inset-x-0 top-0 h-px bg-divider" />
       <SideNav />
@@ -28,6 +29,7 @@ export function LogoIntroSection() {
           </p>
         </motion.div>
         <motion.p
+          id="positioning-heading"
           initial={{ opacity: 0, y: 14 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.6 }}
