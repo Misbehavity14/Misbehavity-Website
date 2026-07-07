@@ -1,0 +1,181 @@
+@import "tailwindcss";
+
+:root {
+  --color-bg: #12110f;
+  --color-bg-soft: #1b1915;
+  --color-text: #f4f0e8;
+  --color-muted: #9d9689;
+  --color-yellow: #ffd400;
+  --color-line: #343028;
+  --system-sans: Arial, Helvetica, sans-serif;
+  --system-mono: "Courier New", Courier, monospace;
+}
+
+@theme inline {
+  --color-background: var(--color-bg);
+  --color-foreground: var(--color-text);
+  --color-surface: var(--color-bg-soft);
+  --color-muted-copy: var(--color-muted);
+  --color-accent: var(--color-yellow);
+  --color-divider: var(--color-line);
+  --font-sans: var(--system-sans);
+  --font-mono: var(--system-mono);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-snap-type: y proximity;
+  background: var(--color-bg);
+}
+
+body {
+  min-height: 100vh;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--system-sans);
+}
+
+::selection {
+  background: var(--color-yellow);
+  color: var(--color-bg);
+}
+
+section {
+  min-height: 100svh;
+  scroll-margin-top: 2rem;
+}
+
+@layer components {
+  .section-shell {
+    @apply mx-auto flex min-h-screen w-full max-w-6xl flex-col justify-center px-6 py-24;
+  }
+
+  .section-kicker {
+    @apply text-sm font-semibold uppercase tracking-[0.22em] text-accent;
+  }
+
+  .section-heading {
+    @apply mt-4 max-w-4xl text-4xl font-semibold leading-tight text-foreground sm:text-6xl;
+  }
+
+  .section-copy {
+    @apply mt-6 max-w-2xl text-lg leading-8 text-muted-copy;
+  }
+
+  .divider-line {
+    @apply h-px w-full bg-divider;
+  }
+
+  .surface-panel {
+    @apply border border-divider bg-surface/70;
+  }
+
+  .yellow-mark {
+    @apply text-accent;
+  }
+}
+
+.snap-section {
+  scroll-snap-align: start;
+}
+
+.marquee-line {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee var(--marquee-duration, 48s) linear infinite;
+  animation-direction: var(--marquee-direction, normal);
+  will-change: transform;
+}
+
+.marquee-line:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+.marquee-copy {
+  display: flex;
+  gap: 0.35em;
+  padding-right: 0.35em;
+  font-size: clamp(4.5rem, 8.4vw, 10rem);
+  font-weight: 900;
+  line-height: 0.86;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.drift-card {
+  animation: drift-card var(--drift-duration, 12s) ease-in-out infinite alternate;
+  animation-delay: var(--drift-delay, 0s);
+  will-change: transform;
+}
+
+.drift-card:hover {
+  animation-play-state: paused;
+}
+
+.perspective-card {
+  perspective: 1200px;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+.group:hover .group-hover\:rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+.evidence-note {
+  border: 1px solid var(--color-line);
+  background: rgba(18, 17, 15, 0.9);
+  padding: 1.5rem;
+  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.24);
+}
+
+@keyframes marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes drift-card {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(var(--drift-distance, 48px), 0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+    scroll-snap-type: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
