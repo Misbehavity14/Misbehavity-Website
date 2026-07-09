@@ -96,7 +96,6 @@ export function ContactSection() {
           />
           <div className="flex flex-wrap items-center gap-x-8 gap-y-2 text-xs font-black uppercase tracking-[0.16em]">
             <span>Misbehavity Consulting LLP, India</span>
-            <span>Brand Strategy</span>
             <span>Creative Consulting</span>
             <span>Mumbai / India</span>
             <a href="mailto:hello@misbehavity.in" className="hover:underline">

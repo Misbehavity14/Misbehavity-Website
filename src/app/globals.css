@@ -122,32 +122,6 @@ button {
   text-transform: uppercase;
 }
 
-.method-lane {
-  position: absolute;
-  left: 50%;
-  width: 100vw;
-  transform: translateX(-50%);
-}
-
-.method-card-travel {
-  animation: method-card-marquee var(--method-duration, 18s) linear infinite;
-  animation-delay: var(--method-delay, 0s);
-  animation-direction: var(--method-direction, normal);
-  will-change: transform;
-}
-
-.method-card-mobile {
-  animation: method-card-mobile var(--method-duration, 18s) linear infinite;
-  animation-delay: var(--method-delay, 0s);
-  animation-direction: var(--method-direction, normal);
-  will-change: transform;
-}
-
-.method-card-travel:hover,
-.method-card-mobile:hover {
-  animation-play-state: paused;
-}
-
 .perspective-card {
   perspective: 1200px;
 }
@@ -182,26 +156,6 @@ button {
 
   to {
     transform: translate3d(-50%, 0, 0);
-  }
-}
-
-@keyframes method-card-marquee {
-  from {
-    transform: translate3d(-38rem, 0, 0);
-  }
-
-  to {
-    transform: translate3d(calc(100vw + 38rem), 0, 0);
-  }
-}
-
-@keyframes method-card-mobile {
-  from {
-    transform: translate3d(-110%, 0, 0);
-  }
-
-  to {
-    transform: translate3d(110%, 0, 0);
   }
 }
 

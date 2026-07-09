@@ -55,7 +55,7 @@ export function LogoIntroSection() {
           transition={{ duration: 0.75, delay: 0.28, ease: "easeOut" }}
           className="mt-8 font-serif text-xl font-normal italic text-foreground/88 sm:text-3xl"
         >
-          Cooler than consulting. Sharper than agencies
+          Cooler than consulting. Sharper than agencies.
         </motion.p>
       </div>
     </section>

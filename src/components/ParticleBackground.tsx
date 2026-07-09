@@ -5,10 +5,14 @@ import { useEffect, useRef } from "react";
 type Particle = {
   x: number;
   y: number;
+  homeX: number;
+  homeY: number;
   vx: number;
   vy: number;
   size: number;
   alpha: number;
+  color: string;
+  phase: number;
 };
 
 export function ParticleBackground() {
@@ -30,30 +34,51 @@ export function ParticleBackground() {
     const prefersReducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     );
-    const pointer = { x: -9999, y: -9999 };
+    const pointer = { x: -9999, y: -9999, active: false };
     let particles: Particle[] = [];
     let frameId = 0;
     let width = 0;
     let height = 0;
     let isVisible = !document.hidden;
     const particleColors = [
-      "rgba(244, 240, 232, 0.55)",
-      "rgba(157, 150, 137, 0.45)",
-      "rgba(70, 66, 58, 0.5)",
+      "rgb(244, 240, 232)",
+      "rgb(184, 178, 166)",
+      "rgb(116, 111, 102)",
     ];
 
     const createParticles = () => {
       const isMobile = window.innerWidth < 768;
-      const count = prefersReducedMotion.matches ? 0 : isMobile ? 92 : 220;
+      const spacing = isMobile ? 25 : 19;
+      const columns = Math.ceil(width / spacing) + 1;
+      const rows = Math.ceil(height / spacing) + 1;
+      const offsetX = (width - (columns - 1) * spacing) / 2;
+      const offsetY = (height - (rows - 1) * spacing) / 2;
 
-      particles = Array.from({ length: count }, () => ({
-        x: Math.random() * width,
-        y: Math.random() * height,
-        vx: (Math.random() - 0.5) * 0.42,
-        vy: (Math.random() - 0.5) * 0.36,
-        size: Math.random() * 1.9 + 0.45,
-        alpha: Math.random() * 0.56 + 0.22,
-      }));
+      particles = [];
+
+      for (let row = 0; row < rows; row += 1) {
+        for (let column = 0; column < columns; column += 1) {
+          const homeX = offsetX + column * spacing;
+          const homeY = offsetY + row * spacing;
+          const variation = Math.random();
+
+          particles.push({
+            x: homeX,
+            y: homeY,
+            homeX,
+            homeY,
+            vx: 0,
+            vy: 0,
+            size: 0.72 + variation * 0.78,
+            alpha: 0.32 + variation * 0.36,
+            color:
+              particleColors[
+                Math.floor(Math.random() * particleColors.length)
+              ],
+            phase: Math.random() * Math.PI * 2,
+          });
+        }
+      }
     };
 
     const resize = () => {
@@ -66,42 +91,63 @@ export function ParticleBackground() {
       canvas.style.height = `${height}px`;
       context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
       createParticles();
+
+      if (prefersReducedMotion.matches) {
+        draw(performance.now(), false);
+      }
     };
 
-    const draw = () => {
+    const draw = (time: number, animate = true) => {
       context.clearRect(0, 0, width, height);
+
       for (const particle of particles) {
         const dx = particle.x - pointer.x;
         const dy = particle.y - pointer.y;
         const distance = Math.hypot(dx, dy);
+        const influence =
+          animate && pointer.active && distance < 175
+            ? Math.pow((175 - distance) / 175, 1.5)
+            : 0;
 
-        if (distance < 155) {
-          const force = (155 - distance) / 155;
-          particle.vx += (dx / Math.max(distance, 1)) * force * 0.045;
-          particle.vy += (dy / Math.max(distance, 1)) * force * 0.045;
+        if (influence > 0) {
+          particle.vx +=
+            (dx / Math.max(distance, 1)) * influence * 1.35;
+          particle.vy +=
+            (dy / Math.max(distance, 1)) * influence * 1.35;
         }
 
-        particle.x += particle.vx;
-        particle.y += particle.vy;
-        particle.vx *= 0.985;
-        particle.vy *= 0.985;
+        if (animate) {
+          particle.vx += (particle.homeX - particle.x) * 0.032;
+          particle.vy += (particle.homeY - particle.y) * 0.032;
+          particle.vx *= 0.84;
+          particle.vy *= 0.84;
+          particle.x += particle.vx;
+          particle.y += particle.vy;
+        }
 
-        if (particle.x < -8) particle.x = width + 8;
-        if (particle.x > width + 8) particle.x = -8;
-        if (particle.y < -8) particle.y = height + 8;
-        if (particle.y > height + 8) particle.y = -8;
+        const shimmer = prefersReducedMotion.matches
+          ? 1
+          : 0.9 + Math.sin(time * 0.0007 + particle.phase) * 0.1;
 
-        context.fillStyle =
-          particleColors[Math.floor((particle.x + particle.y) % particleColors.length)];
-        context.globalAlpha = particle.alpha * 0.78;
+        context.fillStyle = particle.color;
+        context.globalAlpha = Math.min(
+          0.92,
+          particle.alpha * shimmer + influence * 0.28,
+        );
         context.beginPath();
-        context.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+        context.arc(
+          particle.x,
+          particle.y,
+          particle.size * (1 + influence * 0.9),
+          0,
+          Math.PI * 2,
+        );
         context.fill();
       }
 
       context.globalAlpha = 1;
 
-      if (isVisible) {
+      if (animate && isVisible) {
         frameId = window.requestAnimationFrame(draw);
       }
     };
@@ -109,11 +155,13 @@ export function ParticleBackground() {
     const handlePointerMove = (event: PointerEvent) => {
       pointer.x = event.clientX;
       pointer.y = event.clientY;
+      pointer.active = true;
     };
 
     const handlePointerLeave = () => {
       pointer.x = -9999;
       pointer.y = -9999;
+      pointer.active = false;
     };
 
     const handleVisibilityChange = () => {
@@ -150,7 +198,7 @@ export function ParticleBackground() {
     <canvas
       ref={canvasRef}
       aria-hidden="true"
-      className="pointer-events-none fixed inset-0 z-0 opacity-75"
+      className="pointer-events-none fixed inset-0 z-0"
     />
   );
 }
